@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    bootstrap-servers: 172.18.77.208:9092
+    properties:
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username=admin password=admin-secret;
+        mechanism: PLAIN
+      security:
+        protocol: SASL_PLAINTEXT

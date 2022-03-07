@@ -25,10 +25,15 @@ Based on <https://www.youtube.com/watch?v=SqVfCyfCJqw>
 
 ![kafka core capabilities](./kafka-core-capabilities.png)
 
-<https://hellokube.dev/posts/three-ways-zookeepeerless-kafka/>
+
+<https://habr.com/en/post/529222/>
+<https://docs.confluent.io/platform/current/app-development/kafkacat-usage.html>
 
 ```bash
-podman run -it --name kafka-zkless -p 9092:9092 -e LOG_DIR=/tmp/logs quay.io/strimzi/kafka:latest-kafka-3.1.0-amd64 /bin/sh -c 'export CLUSTER_ID=$(bin/kafka-storage.sh random-uuid) && bin/kafka-storage.sh format -t $CLUSTER_ID -c config/kraft/server.properties && bin/kafka-server-start.sh config/kraft/server.properties'
-kafkacat -b localhost -L
+# in $HOME/kafka-docker
+podman-compose -f docker-compose-kafka-single-broker.yml up
+
+
+kafkacat -b localhost:9092 -X security.protocol=sasl_plaintext -X sasl.mechanisms=PLAIN -X sasl.username=admin -X sasl.password=admin-secret -L
 
 ```
