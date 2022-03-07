@@ -25,7 +25,6 @@ Based on <https://www.youtube.com/watch?v=SqVfCyfCJqw>
 
 ![kafka core capabilities](./kafka-core-capabilities.png)
 
-
 <https://habr.com/en/post/529222/>
 <https://docs.confluent.io/platform/current/app-development/kafkacat-usage.html>
 
@@ -36,4 +35,9 @@ podman-compose -f docker-compose-kafka-single-broker.yml up
 
 kafkacat -b localhost:9092 -X security.protocol=sasl_plaintext -X sasl.mechanisms=PLAIN -X sasl.username=admin -X sasl.password=admin-secret -L
 
+//to read from topic
+kafkacat -b localhost:9092 -t amigoscode -X security.protocol=sasl_plaintext -X sasl.mechanisms=PLAIN -X sasl.username=admin  -X sasl.password=admin-secret
+
+//  to consume from topic
+kafkacat -b localhost:9092 -t amigoscode -C -c1 -X security.protocol=sasl_plaintext -X sasl.mechanisms=PLAIN -X sasl.username=admin  -X sasl.password=admin-secret
 ```
