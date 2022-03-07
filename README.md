@@ -40,4 +40,11 @@ kafkacat -b localhost:9092 -t amigoscode -X security.protocol=sasl_plaintext -X 
 
 //  to consume from topic
 kafkacat -b localhost:9092 -t amigoscode -C -c1 -X security.protocol=sasl_plaintext -X sasl.mechanisms=PLAIN -X sasl.username=admin  -X sasl.password=admin-secret
+
+
+curl --location --request POST 'localhost:8080/api/v1/messages' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "message": "Api with Kafka"
+}'
 ```
